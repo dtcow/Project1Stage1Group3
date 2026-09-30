@@ -23,9 +23,9 @@ public class WishList {
         if (product.getQuantity() < quantity) { //Fails if we request a quantity thats larger than whats in the Inventory
             System.out.println("Requested quantity exceeds Inventory quantity!");
             return false;
-        }
+        } 
 
-        product.setQuantity(product.getQuantity() - quantity);
+        // product.setQuantity(product.getQuantity() - quantity); //This subtraction will be done when a Client purchases an item.
 
         WishListItem item =
             new WishListItem(product, quantity);

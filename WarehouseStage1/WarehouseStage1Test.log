@@ -1,0 +1,476 @@
+Script started on 2026-09-30 17:09:38+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="287" LINES="21"]
+[?2004h[0;32m@dtcow [0m➜ [1;34m/workspaces/Project1Stage1Group3/WarehouseStage1 [0;36m([1;31mmain[0;36m) [0m$ java UserInterface.java
+[?2004l
+Default Operator ID: P1
+
+===== WAREHOUSE SYSTEM =====
+1. Client
+2. Operator
+0. Exit
+Enter choice: 2
+Enter Operator ID: P1
+Welcome Warehouse Operator
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 3
+Client name: C1
+Address: 111
+Client added.
+Client ID: P2
+
+1. Add Another Client
+0. Exit
+Enter choice: 1
+Client name: C2
+Address: 222
+Client added.
+Client ID: P3
+
+1. Add Another Client
+0. Exit
+Enter choice: 1
+Client name: C3
+Address: 333
+Client added.
+Client ID: P4
+
+1. Add Another Client
+0. Exit
+Enter choice: 1
+Client name: C4
+Address: 444
+Client added.
+Client ID: P5
+
+1. Add Another Client
+0. Exit
+Enter choice: 1
+Client name: C5
+Address: 555
+Client added.
+Client ID: P6
+
+1. Add Another Client
+0. Exit
+Enter choice: 0
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 4
+
+===== CLIENTS =====
+Name: C1
+ID: P2
+Address: 111
+----------
+Name: C2
+ID: P3
+Address: 222
+----------
+Name: C3
+ID: P4
+Address: 333
+----------
+Name: C4
+ID: P5
+Address: 444
+----------
+Name: C5
+ID: P6
+Address: 555
+----------
+
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 1
+Product name: P1
+Quantity: 10
+Sale price: 1
+Product added.
+Product ID: PR1
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product name: P2
+Quantity: 20
+Sale price: 2
+Product added.
+Product ID: PR2
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product name: P3
+Quantity: 30
+Sale price: 3
+Product added.
+Product ID: PR3
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product name: P4
+Quantity: 40
+Sale price: 4
+Product added.
+Product ID: PR4
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product name: P5
+Quantity: 50
+Sale price: 5
+Product added.
+Product ID: PR5
+
+1. Add Another Product
+0. Exit
+Enter choice: 0
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 2
+
+===== INVENTORY =====
+Name: P1
+ID: PR1
+SalePrice: 1.0
+Quantity: 10
+----------
+Name: P2
+ID: PR2
+SalePrice: 2.0
+Quantity: 20
+----------
+Name: P3
+ID: PR3
+SalePrice: 3.0
+Quantity: 30
+----------
+Name: P4
+ID: PR4
+SalePrice: 4.0
+Quantity: 40
+----------
+Name: P5
+ID: PR5
+SalePrice: 5.0
+Quantity: 50
+----------
+
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 6
+Client ID: P2
+Product ID: PR1
+Quantity: 5
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product ID: PR3
+Quantity: 5
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product ID: PR5
+Quantity: 5
+
+1. Add Another Product
+0. Exit
+Enter choice: 0
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 5
+Client ID: P2
+
+===== WISHLIST =====
+Name: P1
+ID: PR1
+SalePrice: 1.0
+Quantity: 5
+----------
+Name: P3
+ID: PR3
+SalePrice: 3.0
+Quantity: 5
+----------
+Name: P5
+ID: PR5
+SalePrice: 5.0
+Quantity: 5
+----------
+
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 6
+Client ID: P3
+Product ID: PR1
+Quantity: 7
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product ID: PR2
+Quantity: 7
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product ID: PR4
+Quantity: 7
+
+1. Add Another Product
+0. Exit
+Enter choice: 0
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 5
+Client ID: P3
+
+===== WISHLIST =====
+Name: P1
+ID: PR1
+SalePrice: 1.0
+Quantity: 7
+----------
+Name: P2
+ID: PR2
+SalePrice: 2.0
+Quantity: 7
+----------
+Name: P4
+ID: PR4
+SalePrice: 4.0
+Quantity: 7
+----------
+
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 6
+Client ID: P4
+Product ID: PR1
+Quantity: 6
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product ID: PR2
+Quantity: 6
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product ID: PR5
+Quantity: 6
+
+1. Add Another Product
+0. Exit
+Enter choice: 0
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 5
+Client ID: P4
+
+===== WISHLIST =====
+Name: P1
+ID: PR1
+SalePrice: 1.0
+Quantity: 6
+----------
+Name: P2
+ID: PR2
+SalePrice: 2.0
+Quantity: 6
+----------
+Name: P5
+ID: PR5
+SalePrice: 5.0
+Quantity: 6
+----------
+
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 6
+Client ID: P3
+Product ID: PR3
+Quantity: 7
+
+1. Add Another Product
+0. Exit
+Enter choice: 1
+Product ID: PR5
+Quantity: 7
+
+1. Add Another Product
+0. Exit
+Enter choice: 0
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 5
+Client ID: P3
+
+===== WISHLIST =====
+Name: P1
+ID: PR1
+SalePrice: 1.0
+Quantity: 7
+----------
+Name: P2
+ID: PR2
+SalePrice: 2.0
+Quantity: 7
+----------
+Name: P4
+ID: PR4
+SalePrice: 4.0
+Quantity: 7
+----------
+Name: P3
+ID: PR3
+SalePrice: 3.0
+Quantity: 7
+----------
+Name: P5
+ID: PR5
+SalePrice: 5.0
+Quantity: 7
+----------
+
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 5
+Client ID: P4
+
+===== WISHLIST =====
+Name: P1
+ID: PR1
+SalePrice: 1.0
+Quantity: 6
+----------
+Name: P2
+ID: PR2
+SalePrice: 2.0
+Quantity: 6
+----------
+Name: P5
+ID: PR5
+SalePrice: 5.0
+Quantity: 6
+----------
+
+
+===== OPERATOR MENU =====
+1. Add Product
+2. View Products
+3. Add Client
+4. View Clients
+5. View Client Wishlist
+6. Add Product To Client Wishlist
+0. Logout
+Choice: 0
+Logged out.
+
+===== WAREHOUSE SYSTEM =====
+1. Client
+2. Operator
+0. Exit
+Enter choice: 0
+Goodbye.
+[?2004h[0;32m@dtcow [0m➜ [1;34m/workspaces/Project1Stage1Group3/WarehouseStage1 [0;36m([1;31mmain[0;36m) [0m$ EXIT[K[K[K[Kexit
+[?2004l
+exit
+
+Script done on 2026-09-30 17:16:26+00:00 [COMMAND_EXIT_CODE="0"]

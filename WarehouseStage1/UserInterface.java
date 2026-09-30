@@ -353,11 +353,21 @@ public class UserInterface {
                 scanner.nextInt();
 
             scanner.nextLine();
+            int caseChoice;
 
             switch (choice) {
-
                 case 1:
-                    addProduct();
+                    do {
+                        addProduct();
+                    
+                        System.out.print("\n1. Add Another Product\n0. Exit\nEnter choice: ");
+                        caseChoice = scanner.nextInt();
+
+                        if (scanner.hasNextLine()) {
+                            scanner.nextLine(); 
+                        }
+
+                    } while (caseChoice  != 0);
                     break;
 
                 case 2:
@@ -365,7 +375,17 @@ public class UserInterface {
                     break;
 
                 case 3:
-                    addClient();
+                    do {
+                        addClient();
+                    
+                        System.out.print("\n1. Add Another Client\n0. Exit\nEnter choice: ");
+                        caseChoice = scanner.nextInt();
+
+                        if (scanner.hasNextLine()) {
+                            scanner.nextLine(); 
+                        }
+
+                    } while (caseChoice  != 0);
                     break;
 
                 case 4:
@@ -378,7 +398,19 @@ public class UserInterface {
                     break;
 
                 case 6:
-                    warehouseBusiness.addProductWishlist(requestClientID(), requestProductID(), requestQuantity());
+                    String currentClientID = requestClientID();
+
+                    do {
+                        warehouseBusiness.addProductWishlist(currentClientID, requestProductID(), requestQuantity());
+
+                        System.out.print("\n1. Add Another Product\n0. Exit\nEnter choice: ");
+                        caseChoice = scanner.nextInt();
+
+                        if (scanner.hasNextLine()) {
+                            scanner.nextLine(); 
+                        }
+
+                    } while (caseChoice  != 0);
                     break;
 
                 // case 7:
