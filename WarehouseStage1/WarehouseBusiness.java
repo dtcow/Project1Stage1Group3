@@ -35,6 +35,73 @@ public class WarehouseBusiness {
 
 
     // -------------------------
+    // DISPLAY PRODUCTS
+    // -------------------------
+
+    public void displayProducts() {
+        String products = inventory.viewProducts();
+        System.out.println(products);
+    }
+
+    // -------------------------
+    // DISPLAY CLIENTS
+    // -------------------------
+
+    public void displayClients() {
+        String clients = clientList.viewClients();
+        System.out.println(clients);
+    }
+
+    // -------------------------
+    // DISPLAY CLIENTS
+    // -------------------------
+
+    public void displayWishlist(String clientID) {
+        Client currentClient = clientList.getClient(clientID);
+        if (currentClient == null) {
+            System.out.println("Client Not Found");
+        }
+        else {
+            System.out.println(currentClient.getWishlist().viewWishlist());
+        }
+    }
+
+    // -------------------------
+    // ADD PRODUCT TO CLIENT WISHLIST
+    // -------------------------
+
+    public void addProductWishlist(String clientID, String productID, int quantity) {
+        Client currentClient = clientList.getClient(clientID);
+        if (currentClient == null) {
+            System.out.println("Client Not Found");
+        }
+        else {
+            WishList currentWishlist = currentClient.getWishlist();
+            Product currentProduct = inventory.findProductByID(productID);
+            if (currentProduct == null) {
+                System.out.println("Product Not Found");
+                return;
+            } 
+            currentWishlist.addProduct(currentProduct, quantity);
+        }
+    }
+
+    // -------------------------
+    // REMOVE PRODUCT FROM CLIENT WISHLIST
+    // -------------------------
+
+    // public void removeProductWishlist(String clientID, String productID, int quantity) {
+    //     Client currentClient = clientList.getClient(clientID);
+    //     if (currentClient == null) {
+    //         System.out.println("Client Not Found");
+    //     }
+    //     else {
+    //         WishList currentWishlist = currentClient.getWishlist();
+    //         currentWishlist.removeProduct(productID);
+    //     }
+    // }
+
+    // -------------------------
     // ADD CLIENT
     // -------------------------
 

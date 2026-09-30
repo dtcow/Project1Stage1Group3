@@ -15,10 +15,17 @@ public class WishList {
         WishListItem existing =
             findProduct(product.getProductID());
 
-        if (existing != null) {
+        if (existing != null) { //If product exists, sets quantity
             existing.setQuantity(quantity);
             return true;
         }
+
+        if (product.getQuantity() < quantity) { //Fails if we request a quantity thats larger than whats in the Inventory
+            System.out.println("Requested quantity exceeds Inventory quantity!");
+            return false;
+        }
+
+        product.setQuantity(product.getQuantity() - quantity);
 
         WishListItem item =
             new WishListItem(product, quantity);
@@ -60,5 +67,23 @@ public class WishList {
 
     public Iterator<WishListItem> getWishlistItems() {
         return items.iterator();
+    }
+
+    public String viewWishlist() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder productsString = new StringBuilder();
+        productsString.append("\n===== WISHLIST =====\n");
+        for (WishListItem item : items) {
+            Product product = item.getProduct();
+            productsString.append("Name: ").append(product.getName()).append("\n");
+            productsString.append("ID: ").append(product.getProductID()).append("\n");
+            productsString.append("SalePrice: ").append(product.getSalePrice()).append("\n");
+            productsString.append("Quantity: ").append(item.getQuantity()).append("\n----------\n"); //Different Quantity than product Quantity.
+        }
+        return productsString.toString();
     }
 }

@@ -58,4 +58,21 @@ public class Inventory {
     public Iterator<Product> getProducts() {
         return products.iterator();
     }
+
+    public String viewProducts() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder productsString = new StringBuilder();
+        productsString.append("\n===== INVENTORY =====\n");
+        for (Product product : products) {
+            productsString.append("Name: ").append(product.getName()).append("\n");
+            productsString.append("ID: ").append(product.getProductID()).append("\n");
+            productsString.append("SalePrice: ").append(product.getSalePrice()).append("\n");
+            productsString.append("Quantity: ").append(product.getQuantity()).append("\n----------\n");
+        }
+        return productsString.toString();
+    }
 }

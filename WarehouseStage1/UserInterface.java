@@ -4,13 +4,13 @@ import java.util.Scanner;
 public class UserInterface {
 
     private Scanner scanner;
-    private WarehouseBusiness warehouse;
+    private WarehouseBusiness warehouseBusiness;
 
     public UserInterface() {
 
         scanner = new Scanner(System.in);
 
-        warehouse =
+        warehouseBusiness =
             WarehouseBusiness.instance();
     }
 
@@ -126,7 +126,7 @@ public class UserInterface {
         request.setAddress(address);
 
         Result result =
-            warehouse.addClient(request);
+            warehouseBusiness.addClient(request);
 
         if (result.getResultCode()
                 == Result.OPERATION_COMPLETED) {
@@ -171,7 +171,7 @@ public class UserInterface {
             scanner.nextLine();
 
         Client client =
-            warehouse.getClient(id);
+            warehouseBusiness.getClient(id);
 
         if (client == null) {
 
@@ -279,7 +279,7 @@ public class UserInterface {
             scanner.nextLine();
 
         Operator operator =
-            warehouse.getOperator(id);
+            warehouseBusiness.getOperator(id);
 
         if (operator == null) {
 
@@ -326,6 +326,22 @@ public class UserInterface {
             );
 
             System.out.println(
+                "4. View Clients"
+            );
+
+            System.out.println(
+                "5. View Client Wishlist"
+            );
+
+            System.out.println(
+                "6. Add Product To Client Wishlist"
+            );
+
+            // System.out.println(
+            //     "7. Remove Product From Client Wishlist"
+            // );
+
+            System.out.println(
                 "0. Logout"
             );
 
@@ -345,12 +361,31 @@ public class UserInterface {
                     break;
 
                 case 2:
-                    displayProducts();
+                    warehouseBusiness.displayProducts();
                     break;
 
                 case 3:
                     addClient();
                     break;
+
+                case 4:
+                    warehouseBusiness.displayClients();
+                    break;
+
+                case 5:
+                    String clientID = requestClientID();
+                    warehouseBusiness.displayWishlist(clientID);
+                    break;
+
+                case 6:
+                    warehouseBusiness.addProductWishlist(requestClientID(), requestProductID(), requestQuantity());
+                    break;
+
+                // case 7:
+                //     String currentClientID = requestClientID();
+                //     String currentProductID = requestProductID();
+                //     warehouseBusiness.removeProductWishlist(currentClientID, currentProductID);
+                //     break;
 
                 case 0:
                     System.out.println(
@@ -395,7 +430,7 @@ public class UserInterface {
         request.setAddress(address);
 
         Result result =
-            warehouse.addClient(request);
+            warehouseBusiness.addClient(request);
 
         if (result.getResultCode()
                 == Result.OPERATION_COMPLETED) {
@@ -455,7 +490,7 @@ public class UserInterface {
         request.setSalePrice(price);
 
         Result result =
-            warehouse.addProduct(request);
+            warehouseBusiness.addProduct(request);
 
         if (result.getResultCode()
                 == Result.OPERATION_COMPLETED) {
@@ -493,7 +528,7 @@ public class UserInterface {
     private void displayProducts() {
 
         Iterator<Product> products =
-            warehouse
+            warehouseBusiness
                 .getInventory()
                 .getProducts();
 
@@ -531,7 +566,50 @@ public class UserInterface {
             );
         }
     }
+    // =========================
+    // REQUEST CLIENT ID
+    // =========================
 
+    private String requestClientID() {
+        System.out.print(
+            "Client ID: "
+        );
+
+        String currentClientID =
+            scanner.nextLine();
+
+        return currentClientID;
+    }
+
+    // =========================
+    // REQUEST PRODUCT ID
+    // =========================
+
+    private String requestProductID() {
+        System.out.print(
+            "Product ID: "
+        );
+
+        String currentProductID =
+            scanner.nextLine();
+
+        return currentProductID;
+    }
+
+    // =========================
+    // REQUEST QUANTITY
+    // =========================
+
+    private int requestQuantity() {
+        System.out.print(
+            "Quantity: "
+        );
+
+        int quantity =
+            scanner.nextInt();
+
+        return quantity;
+    }
 
     // =========================
     // ADD TO WISHLIST
@@ -564,7 +642,7 @@ public class UserInterface {
         request.setQuantity(quantity);
 
         Result result =
-            warehouse.addProductWishlist(
+            warehouseBusiness.addProductWishlist(
                 request
             );
 
@@ -600,7 +678,7 @@ public class UserInterface {
             String clientID) {
 
         Client client =
-            warehouse.getClient(clientID);
+            warehouseBusiness.getClient(clientID);
 
         if (client == null) {
 
