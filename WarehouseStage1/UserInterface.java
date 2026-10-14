@@ -354,6 +354,10 @@ public class UserInterface {
             );
 
             System.out.println(
+                "11. Recieve Shipment"
+            );
+
+            System.out.println(
                 "0. Logout"
             );
 
@@ -415,6 +419,23 @@ public class UserInterface {
                 case 7:
                     processClientOrder();
                     break;
+
+                case 8:
+                    viewClientInvoices();
+                    break;
+
+                case 9:
+                    viewProductWaitlist();
+                    break;
+
+                case 10:
+                    processClientPayment();
+                    break;
+
+                case 11:
+                    recieveShipment();
+                    break;
+
                 case 0:
                     System.out.println(
                         "Logged out."
@@ -446,6 +467,54 @@ public class UserInterface {
         }
         warehouseBusiness.processClientOrder(currentClient);
     }
+
+    private void viewClientInvoices() {
+        Client currentClient = requestClientID();
+        if (currentClient == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        warehouseBusiness.viewClientInvoices(currentClient);
+    }
+
+    private void viewProductWaitlist() {
+        Product currentProduct = requestProductID();
+        if (currentProduct == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        warehouseBusiness.viewProductWaitlist(currentProduct);
+    }
+
+    private void recieveShipment() {
+        Product currentProduct = requestProductID();
+        if (currentProduct == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        int currentQuantity = requestQuantity();
+        if (currentQuantity <= 0) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        warehouseBusiness.recieveShipment(currentProduct, currentQuantity);
+    }
+
+    private void processClientPayment() {
+        Client currentClient = requestClientID();
+        if (currentClient == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        System.out.println(currentClient.getName() + " Has a current balance of: $" + currentClient.getBalance());
+        double currentAmount = requestAmount();
+        if (currentAmount <= 0) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        warehouseBusiness.processClientPayment(currentClient, currentAmount);
+    }
+
 
     private void addProductWishlist() {
         int choice;
@@ -686,6 +755,23 @@ public class UserInterface {
             scanner.nextInt();
 
         return quantity;
+    }
+
+    // =========================
+    // REQUEST QUANTITY
+    // =========================
+
+    private double requestAmount() {
+        System.out.print(
+            "Amount: $"
+        );
+
+        double amount =
+            scanner.nextInt();
+        
+        amount = Math.round(amount * 100.0d) / 100.0d;
+
+        return amount;
     }
 
     // =========================

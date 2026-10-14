@@ -48,7 +48,8 @@ public class Transaction {
     }
 
 
-    public void AddProductToTransaction(double totalCost, String productID, int quantity) {
+    public void addProductToTransaction(double totalCost, String productID, int quantity) {
+        this.totalCost += totalCost;
         ProductBought currentProductBought = new ProductBought(productID, quantity);
         productIDs.add(currentProductBought);
     }
@@ -57,7 +58,7 @@ public class Transaction {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n===== TRANSACTION =====\n");
-        stringBuilder.append("Total Cost: ").append(totalCost).append("\n");
+        stringBuilder.append("Total Cost: $").append(totalCost).append("\n");
         stringBuilder.append("ClientID: ").append(clientID).append("\n");
         stringBuilder.append("Date: ").append(date).append("\n");
         stringBuilder.append("Products: ").append("\n----------\n");

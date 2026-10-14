@@ -63,6 +63,14 @@ public class WarehouseBusiness {
     }
 
     // -------------------------
+    // DISPLAY WAITLIST
+    // -------------------------
+
+    public void recieveShipment(Product currentProduct, int currentQuantity) {
+        currentProduct.shipment(currentQuantity);
+    }
+
+    // -------------------------
     // DISPLAY CLIENTS
     // -------------------------
 
@@ -76,6 +84,31 @@ public class WarehouseBusiness {
 
     public void processClientOrder(Client currentClient) {
         currentClient.getWishlist().purchase();
+    }
+
+    // -------------------------
+    // PROCESS CLIENT PAYMENT
+    // -------------------------
+
+    public void processClientPayment(Client currentClient, double amount) {
+        currentClient.credit(amount);
+    }
+
+    // -------------------------
+    // VIEW CLIENT INVOICES
+    // -------------------------
+
+    public void viewClientInvoices(Client currentClient) {
+        currentClient.viewTransactions();
+    }
+
+    
+    // -------------------------
+    // VIEW CLIENT INVOICES
+    // -------------------------
+
+    public void viewProductWaitlist(Product currentProduct) {
+        currentProduct.viewWaitlist();
     }
     // -------------------------
     // ADD PRODUCT TO CLIENT WISHLIST

@@ -41,6 +41,10 @@ public class WishList {
     }
 
     public void purchase() {
+        if (items.size() <= 0) {
+            System.out.println("No Items In Wishlist");
+            return;
+        }
         Transaction transaction = null;
         for (WishListItem wishListItem : items) { // Iterate through all products
             int chosenQuantity;
@@ -48,7 +52,7 @@ public class WishList {
                 System.out.println("\n===== PRODUCT =====");
                 Product currentProduct = wishListItem.getProduct();
                 System.out.println("Product: " + wishListItem.getName() + "\nID: " + wishListItem.getProductID() + "\nCurrent Quantity: " + wishListItem.getQuantity() + "\n----------\n");
-                System.out.print("\nWhat is the quantity you wish to purchase: ");
+                System.out.print("What is the quantity you wish to purchase: ");
                 chosenQuantity = scanner.nextInt();
 
                 if (scanner.hasNextLine()) scanner.nextLine();
@@ -72,17 +76,28 @@ public class WishList {
                         chosenQuantity = -1; //Will Repeat last request
                     }
                 } 
-                else { // Set to quantity
+                else if (chosenQuantity > 0) { // Set to quantity
                     if (transaction == null) transaction = new Transaction(client.getID());
 
+                    System.out.println("\nPurchased " + chosenQuantity + " of " + currentProduct.getName());
+
                     double productSalePrice = currentProduct.getSalePrice();
-                    transaction.AddProductToTransaction(productSalePrice, wishListItem.getProductID(), chosenQuantity);
+                    transaction.addProductToTransaction(productSalePrice, wishListItem.getProductID(), chosenQuantity);
+                    currentProduct.removeQuantity(chosenQuantity);
+                }
+                else { //Zero
+                    //Nothing Happens
                 }
 
             } while (chosenQuantity < 0); // If negative ask again
         }
         //Bill Cost to account
-        client.charge(transaction.getTotalCost());
+        items.clear();
+        if (transaction != null) {
+            client.addTransaction(transaction);
+            client.charge(transaction.getTotalCost());
+            System.out.println(transaction.toString());
+        }
     }
 
     public WishListItem findProduct(String productID) {
