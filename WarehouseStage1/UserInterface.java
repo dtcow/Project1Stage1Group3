@@ -337,9 +337,21 @@ public class UserInterface {
                 "6. Add Product To Client Wishlist"
             );
 
-            // System.out.println(
-            //     "7. Remove Product From Client Wishlist"
-            // );
+            System.out.println(
+                "7. Process Client Order"
+            );
+
+            System.out.println(
+                "8. View Client Invoices"
+            );
+
+            System.out.println(
+                "9. View Product Waitlist"
+            );
+
+            System.out.println(
+                "10. Process Client Payment"
+            );
 
             System.out.println(
                 "0. Logout"
@@ -393,32 +405,16 @@ public class UserInterface {
                     break;
 
                 case 5:
-                    String clientID = requestClientID();
-                    warehouseBusiness.displayWishlist(clientID);
+                    displayWishlist();
                     break;
 
                 case 6:
-                    String currentClientID = requestClientID();
-
-                    do {
-                        warehouseBusiness.addProductWishlist(currentClientID, requestProductID(), requestQuantity());
-
-                        System.out.print("\n1. Add Another Product\n0. Exit\nEnter choice: ");
-                        caseChoice = scanner.nextInt();
-
-                        if (scanner.hasNextLine()) {
-                            scanner.nextLine(); 
-                        }
-
-                    } while (caseChoice  != 0);
+                    addProductWishlist();
                     break;
 
-                // case 7:
-                //     String currentClientID = requestClientID();
-                //     String currentProductID = requestProductID();
-                //     warehouseBusiness.removeProductWishlist(currentClientID, currentProductID);
-                //     break;
-
+                case 7:
+                    processClientOrder();
+                    break;
                 case 0:
                     System.out.println(
                         "Logged out."
@@ -429,6 +425,55 @@ public class UserInterface {
                     System.out.println(
                         "Invalid choice."
                     );
+            }
+
+        } while (choice != 0);
+    }
+    private void displayWishlist() {
+        Client currentClient = requestClientID();
+        if (currentClient == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        warehouseBusiness.displayWishlist(currentClient);
+    }
+
+    private void processClientOrder() {
+        Client currentClient = requestClientID();
+        if (currentClient == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        warehouseBusiness.processClientOrder(currentClient);
+    }
+
+    private void addProductWishlist() {
+        int choice;
+        Client currentClient = requestClientID();
+        if (currentClient == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+        do {
+            Product currentProduct = requestProductID();
+            if (currentProduct == null) {
+                System.out.println("Invalid Input");
+                return;
+            }
+            int currentQuantity = requestQuantity();
+            if (currentQuantity <= 0) {
+                System.out.println("Invalid Input");
+                return;
+            }
+
+
+            warehouseBusiness.addProductWishlist(currentClient, currentProduct, currentQuantity);
+
+            System.out.print("\n1. Add Another Product\n0. Exit\nEnter choice: ");
+            choice = scanner.nextInt();
+
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
             }
 
         } while (choice != 0);
@@ -602,30 +647,30 @@ public class UserInterface {
     // REQUEST CLIENT ID
     // =========================
 
-    private String requestClientID() {
+    private Client requestClientID() {
         System.out.print(
             "Client ID: "
         );
 
         String currentClientID =
             scanner.nextLine();
-
-        return currentClientID;
+        Client currentClient = warehouseBusiness.getClient(currentClientID); 
+        return currentClient;
     }
 
     // =========================
     // REQUEST PRODUCT ID
     // =========================
 
-    private String requestProductID() {
+    private Product requestProductID() {
         System.out.print(
             "Product ID: "
         );
 
         String currentProductID =
             scanner.nextLine();
-
-        return currentProductID;
+        Product currentProduct = warehouseBusiness.getInventory().findProductByID(currentProductID); 
+        return currentProduct;
     }
 
     // =========================

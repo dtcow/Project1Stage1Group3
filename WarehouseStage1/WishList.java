@@ -1,13 +1,18 @@
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class WishList {
 
+    private Scanner scanner;
     private List<WishListItem> items;
+    private Client client;
 
-    public WishList() {
+    public WishList(Client client) {
+        scanner = new Scanner(System.in);
         items = new LinkedList<WishListItem>();
+        this.client = client;
     }
 
     public boolean addProduct(Product product, int quantity) {
@@ -33,6 +38,51 @@ public class WishList {
         items.add(item);
 
         return true;
+    }
+
+    public void purchase() {
+        Transaction transaction = null;
+        for (WishListItem wishListItem : items) { // Iterate through all products
+            int chosenQuantity;
+            do {
+                System.out.println("\n===== PRODUCT =====");
+                Product currentProduct = wishListItem.getProduct();
+                System.out.println("Product: " + wishListItem.getName() + "\nID: " + wishListItem.getProductID() + "\nCurrent Quantity: " + wishListItem.getQuantity() + "\n----------\n");
+                System.out.print("\nWhat is the quantity you wish to purchase: ");
+                chosenQuantity = scanner.nextInt();
+
+                if (scanner.hasNextLine()) scanner.nextLine();
+
+                if (chosenQuantity < 0) {
+                    System.out.println("Input Must Be Greater Than Zero");
+                } 
+                else if (chosenQuantity > currentProduct.getQuantity()) {
+                    System.out.println("Quantity greater than Inventory Quantity of: " + currentProduct.getQuantity() + 
+                    "\n\nWould you like to-" +
+                    "\nRequest new quantity: 0" +
+                    "\nAdd to Waitlist: 1");
+                    System.out.print("\nAnswer: ");
+                    int choice = scanner.nextInt();
+                    if (scanner.hasNextLine()) scanner.nextLine();
+                    
+                    if (choice == 1) {//Add To Waitlist
+                        currentProduct.addToWaitlist(client, chosenQuantity);
+                    }
+                    else {
+                        chosenQuantity = -1; //Will Repeat last request
+                    }
+                } 
+                else { // Set to quantity
+                    if (transaction == null) transaction = new Transaction(client.getID());
+
+                    double productSalePrice = currentProduct.getSalePrice();
+                    transaction.AddProductToTransaction(productSalePrice, wishListItem.getProductID(), chosenQuantity);
+                }
+
+            } while (chosenQuantity < 0); // If negative ask again
+        }
+        //Bill Cost to account
+        client.charge(transaction.getTotalCost());
     }
 
     public WishListItem findProduct(String productID) {

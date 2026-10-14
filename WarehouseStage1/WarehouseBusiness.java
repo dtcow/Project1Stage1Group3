@@ -43,6 +43,8 @@ public class WarehouseBusiness {
         System.out.println(products);
     }
 
+
+
     // -------------------------
     // DISPLAY CLIENTS
     // -------------------------
@@ -53,37 +55,35 @@ public class WarehouseBusiness {
     }
 
     // -------------------------
+    // DISPLAY WAITLIST
+    // -------------------------
+
+    public void displayWaitlist(Product product) {
+        product.viewWaitlist();
+    }
+
+    // -------------------------
     // DISPLAY CLIENTS
     // -------------------------
 
-    public void displayWishlist(String clientID) {
-        Client currentClient = clientList.getClient(clientID);
-        if (currentClient == null) {
-            System.out.println("Client Not Found");
-        }
-        else {
-            System.out.println(currentClient.getWishlist().viewWishlist());
-        }
+    public void displayWishlist(Client currentClient) {
+        System.out.println(currentClient.getWishlist().viewWishlist());
     }
 
+    // -------------------------
+    // PROCESS CLIENT ORDER
+    // -------------------------
+
+    public void processClientOrder(Client currentClient) {
+        currentClient.getWishlist().purchase();
+    }
     // -------------------------
     // ADD PRODUCT TO CLIENT WISHLIST
     // -------------------------
 
-    public void addProductWishlist(String clientID, String productID, int quantity) {
-        Client currentClient = clientList.getClient(clientID);
-        if (currentClient == null) {
-            System.out.println("Client Not Found");
-        }
-        else {
-            WishList currentWishlist = currentClient.getWishlist();
-            Product currentProduct = inventory.findProductByID(productID);
-            if (currentProduct == null) {
-                System.out.println("Product Not Found");
-                return;
-            } 
-            currentWishlist.addProduct(currentProduct, quantity);
-        }
+    public void addProductWishlist(Client currentClient, Product currentProduct, int quantity) {
+        WishList currentWishlist = currentClient.getWishlist();
+        currentWishlist.addProduct(currentProduct, quantity);
     }
 
     // -------------------------

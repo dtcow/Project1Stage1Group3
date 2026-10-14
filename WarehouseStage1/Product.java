@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Product {
 
     private static int idCounter = 1;
@@ -6,6 +9,8 @@ public class Product {
     private String name;
     private int quantity;
     private double salePrice;
+    private record Waitlisted(Client client, int quantity) {}
+    Queue<Waitlisted> waitlist = new LinkedList<>();
 
     public Product(String name, int quantity, double salePrice) {
 
@@ -17,6 +22,17 @@ public class Product {
 
     public String getProductID() {
         return productID;
+    }
+
+    public void viewWaitlist() {
+        StringBuilder productsString = new StringBuilder();
+        productsString.append("\n===== WAITLIST =====\n");
+        productsString.append("Product: ").append(name).append("\n");
+        for (Waitlisted waitlisted : waitlist) {
+            productsString.append("ClientID: ").append(waitlisted.client.getID());
+            productsString.append("Quantity: ").append(waitlisted.quantity).append("\n----------\n");
+        }
+        System.out.println(productsString.toString());
     }
 
     public String getName() {
@@ -33,5 +49,10 @@ public class Product {
 
     public double getSalePrice() {
         return salePrice;
+    }
+
+    public void addToWaitlist(Client client, int quantity) {
+        Waitlisted waitlisted = new Waitlisted(client, quantity);
+        waitlist.add(waitlisted);
     }
 }

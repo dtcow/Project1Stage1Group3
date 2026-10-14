@@ -70,7 +70,8 @@ public class ClientList {
         for (Client client : clients) {
             clientString.append("Name: ").append(client.getName()).append("\n");
             clientString.append("ID: ").append(client.getID()).append("\n");
-            clientString.append("Address: ").append(client.getAddress()).append("\n----------\n");
+            clientString.append("Address: ").append(client.getAddress()).append("\n");
+            clientString.append("Balance: ").append(client.getBalance()).append("\n----------\n");
         }
         return clientString.toString();
     }

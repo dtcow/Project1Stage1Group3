@@ -7,7 +7,7 @@ public class Client extends Person {
         super(name, address);
 
         balance = 0.0;
-        wishlist = new WishList();
+        wishlist = new WishList(this);
     }
 
     public double getBalance() {
@@ -16,5 +16,13 @@ public class Client extends Person {
 
     public WishList getWishlist() {
         return wishlist;
+    }
+
+    public void charge(double charge) { //They get charged amount
+        balance -= charge;
+    }
+
+    public void credit(double credit) { //They pay off amount
+        balance += credit;
     }
 }

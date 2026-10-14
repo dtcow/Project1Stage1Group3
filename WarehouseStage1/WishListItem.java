@@ -12,6 +12,14 @@ public class WishListItem {
         return product;
     }
 
+    public String getName() {
+        return product.getName();
+    }
+
+    public String getProductID() {
+        return product.getProductID();
+    }
+
     public int getQuantity() {
         return quantity;
     }
